@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "38611871758",
+    "firebase_url": "https://food-app-40308.firebaseio.com",
+    "project_id": "food-app-40308",
+    "storage_bucket": "food-app-40308.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38611871758:android:e6a0a3527d2794d69d745f",
+        "android_client_info": {
+          "package_name": "com.cwc.flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38611871758-avad75p1fr6aonldo1bngpslhe6efb22.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASyq7vamMQj-ckPtHto77OLV8NEidgmqU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38611871758-avad75p1fr6aonldo1bngpslhe6efb22.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38611871758:android:da692e915372fab69d745f",
+        "android_client_info": {
+          "package_name": "com.example.userapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38611871758-avad75p1fr6aonldo1bngpslhe6efb22.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASyq7vamMQj-ckPtHto77OLV8NEidgmqU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38611871758-avad75p1fr6aonldo1bngpslhe6efb22.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38611871758:android:6b6f49801d044fe39d745f",
+        "android_client_info": {
+          "package_name": "userfood.user_food"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38611871758-avad75p1fr6aonldo1bngpslhe6efb22.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASyq7vamMQj-ckPtHto77OLV8NEidgmqU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38611871758-avad75p1fr6aonldo1bngpslhe6efb22.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
