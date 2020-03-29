@@ -3,7 +3,7 @@ import 'package:user_food/notifier/food_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:user_food/model/food.dart';
-import 'package:user_food/secondary_screens/cartPage2.dart';
+import 'package:user_food/secondary_screens/CartPage.dart';
 
 class FoodDetail extends StatelessWidget {
   @override
@@ -16,17 +16,42 @@ class FoodDetail extends StatelessWidget {
         backgroundColor: Colors.red,
         title: Text('Buy food'),
         actions: <Widget>[
-          // Icon(Icons.shopping_cart),
-          StreamBuilder(
-            stream: foodNotifier.listStream,
-            builder: (context, snapshot) {
-              List<Food> userFoodCart = snapshot.data;
-
-              int length = userFoodCart != null ? userFoodCart.length : 0;
-
-              return buildGestureDetector(length, context, userFoodCart);
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CartPage()));
             },
-          ),
+            child: new Stack(
+              children: <Widget>[
+                new IconButton(
+                  icon: new Icon(
+                    Icons.shopping_cart,
+                    color: Colors.white,
+                  ),
+                  onPressed: null,
+                ),
+                new Positioned(
+                    child: new Stack(
+                  children: <Widget>[
+                    new Icon(Icons.brightness_1,
+                        size: 25.0, color: Colors.blueAccent),
+                    new Positioned(
+                        top: 5.0,
+                        right: 8.5,
+                        child: new Center(
+                          child: new Text(
+                            foodNotifier.userFoodCart.length.toString(),
+                            style: new TextStyle(
+                                color: Colors.white,
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        )),
+                  ],
+                )),
+              ],
+            ),
+          )
         ],
       ),
       body: ListView(
@@ -80,49 +105,6 @@ class FoodDetail extends StatelessWidget {
       ),
     );
   }
-
-  Widget buildGestureDetector(
-      int length, BuildContext context, List<Food> userFoodCart) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Cart2()
-                //CartPage()
-                ));
-      },
-      child: new Stack(
-        children: <Widget>[
-          new IconButton(
-            icon: new Icon(
-              Icons.shopping_cart,
-              color: Colors.white,
-            ),
-            onPressed: null,
-          ),
-          new Positioned(
-              child: new Stack(
-            children: <Widget>[
-              new Icon(Icons.brightness_1,
-                  size: 25.0, color: Colors.blueAccent),
-              new Positioned(
-                  top: 5.0,
-                  right: 8.5,
-                  child: new Center(
-                    child: new Text(
-                      length.toString(),
-                      style: new TextStyle(
-                          color: Colors.white,
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  )),
-            ],
-          )),
-        ],
-      ),
-    );
-  }
 }
 
 class SomeButton extends StatelessWidget {
@@ -130,9 +112,8 @@ class SomeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
 
-    //addToCart(Food food) {foodNotifier.addToUserCart(food);}
     addToCart(Food food) {
-      foodNotifier.addToList(food);
+      foodNotifier.addToUserCart(food);
     }
 
     return MaterialButton(

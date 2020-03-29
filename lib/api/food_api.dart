@@ -151,10 +151,14 @@ deleteFood(Food food, Function foodDeleted) async {
   foodDeleted(food);
 }
 
-uploadCart(Food userFoodCart) async {
-  CollectionReference foodRef = Firestore.instance.collection('Orders');
-  DocumentReference documentRef = await foodRef.add(userFoodCart.toMap());
-  userFoodCart.id = documentRef.documentID;
+class ProductService {
+  Firestore _firestore = Firestore.instance;
+  String ref = 'Orders';
 
-
+  void uploadProduct(Map<String, dynamic> data) {
+    var id = Uuid();
+    String productId = id.v1();
+    data["id"] = productId;
+    _firestore.collection(ref).document(productId).setData(data);
+  }
 }

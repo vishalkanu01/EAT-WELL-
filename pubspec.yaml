@@ -30,6 +30,9 @@ dependencies:
   carousel_pro: ^1.0.0
   rxdart:
   bloc_pattern: ^2.5.1
+  fluttertoast:
+  flutter_webview_plugin: ^0.2.1+2
+  flutter_launcher_icons: "^0.6.1"
 
 
 
@@ -43,7 +46,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
+flutter_icons:
+  image_path: "images/logo.png"
+  android: true
+  ios: true
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -64,7 +70,7 @@ flutter:
   - images/bread.jpg
   - images/tacos.jpg
   - images/pizza.jpg
-  - images/Picture-Unavailable.jpg
+  - images/user.jpg
 
 
 

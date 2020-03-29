@@ -78,7 +78,7 @@ class _LoginState extends State<Login> {
         labelStyle: TextStyle(color: Colors.white),
       ),
       keyboardType: TextInputType.emailAddress,
-      initialValue: 'test@gmail.com',
+     // initialValue: 'test@gmail.com',
       style: TextStyle(fontSize: 26, color: Colors.white),
       cursorColor: Colors.white,
       validator: (String value) {
@@ -157,7 +157,7 @@ class _LoginState extends State<Login> {
         decoration: BoxDecoration(
             color: Colors.blueGrey,
             image: DecorationImage(
-              image: AssetImage("images/biryani.jpg"),
+              image: AssetImage("images/pizza.jpg"),
               fit: BoxFit.cover,
             )),
         //(0xff34056D)

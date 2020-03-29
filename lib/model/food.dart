@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
 class Food {
   String id;
@@ -51,3 +52,4 @@ class Food {
   }
 
 }
+

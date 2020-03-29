@@ -78,53 +78,16 @@ class Single_cart_product extends StatelessWidget {
             )
           ],
         ),
-        trailing: Container(
-          margin: EdgeInsets.only(right: 0),
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey[300], width: 2),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          padding: EdgeInsets.symmetric(vertical: 5),
-          width: 120,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              SizedBox(
-                width: _buttonWidth,
-                height: _buttonWidth,
-                child: FlatButton(
-                  padding: EdgeInsets.all(0),
-                  onPressed: () {
-                   foodNotifier.currentFood.quantity--;
-                  },
-                  child: Text(
-                    "-",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
-                  ),
-                ),
-              ),
-              Text(
-
-                '$cart_prod_qty',
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
-              ),
-              SizedBox(
-                width: _buttonWidth,
-                height: _buttonWidth,
-                child: FlatButton(
-                  padding: EdgeInsets.all(0),
-                  onPressed: () {
-                    foodNotifier.currentFood.quantity++;
-                  },
-                  child: Text(
-                    "+",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+        //trailing: Container(
+        //          margin: EdgeInsets.only(right: 0),
+        //          decoration: BoxDecoration(
+        //            border: Border.all(color: Colors.grey[300], width: 2),
+        //            borderRadius: BorderRadius.circular(10),
+        //          ),
+        //          padding: EdgeInsets.symmetric(vertical: 5),
+        //          width: 120,
+        //          //
+        //        ),
         //new Row(
         //          children: <Widget>[
         //            Expanded(
