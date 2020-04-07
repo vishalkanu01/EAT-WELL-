@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 
 class Food {
   String id;
@@ -11,9 +10,9 @@ class Food {
   List subIngredients = [];
   Timestamp createdAt;
   Timestamp updatedAt;
- int quantity;
+  int quantity = 1;
 
-  Food({this.quantity = 1,});
+  Food();
 
   Food.fromMap(Map<String, dynamic> data) {
     id = data['id'];
@@ -26,30 +25,4 @@ class Food {
     updatedAt = data['updatedAt'];
     //quantity = data['quantity'];
   }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'category': category,
-      'image': image,
-      'price': price,
-      'details' : details,
-      'createdAt': createdAt,
-      'updatedAt': updatedAt
-    };
-  }
-
-
-
-
-  void incrementQuantity() {
-    this.quantity = this.quantity + 1;
-  }
-
-  void decrementQuantity() {
-    this.quantity = this.quantity - 1;
-  }
-
 }
-

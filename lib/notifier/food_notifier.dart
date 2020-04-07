@@ -37,4 +37,9 @@ class FoodNotifier with ChangeNotifier {
     );
     notifyListeners();
   }
+
+  removeItemFromUserCart(Food food) {
+    userFoodCart.remove(food);
+    notifyListeners();
+  }
 }

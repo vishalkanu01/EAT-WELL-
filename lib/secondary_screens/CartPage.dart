@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
@@ -5,8 +6,6 @@ import 'package:user_food/api/food_api.dart';
 import 'package:user_food/model/food.dart';
 import 'package:user_food/notifier/food_notifier.dart';
 import 'package:user_food/notifier/auth_notifier.dart';
-
-import 'package:user_food/secondary_screens/Cart_products.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -20,6 +19,7 @@ class _CartPageState extends State<CartPage> {
   bool uploaded = false;
 
   Food get food => null;
+  double _buttonWidth = 30;
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +30,107 @@ class _CartPageState extends State<CartPage> {
         elevation: 0.0,
         backgroundColor: Colors.red,
         title: Text('Cart'),
-        actions: <Widget>[
-          new IconButton(
-              icon: Icon(Icons.search, color: Colors.white), onPressed: () {}),
-        ],
       ),
-      body: Form(key: _formKey, child: new Cart_products()),
+      body: Form(
+          key: _formKey,
+          child: ListView.builder(
+              itemCount: foodNotifier.userFoodCart.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    // ============ leading section==================
+                    leading: new Image.network(
+                      foodNotifier.userFoodCart[index].image,
+                      width: 60.0,
+                      height: 100.0,
+                    ),
+                    //========= Title section========
+                    title: new Text(
+                      foodNotifier.userFoodCart[index].name,
+                      style:
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
+                    ),
+                    //============Subtitle section=============
+                    subtitle: new Column(
+                      children: <Widget>[
+//   ===================== This section is for the product price==============
+                        new Container(
+                          alignment: Alignment.topLeft,
+                          child: new Text(
+                            "\RS ${foodNotifier.userFoodCart[index].price}",
+                            style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red),
+                          ),
+                        )
+                      ],
+                    ),
+                    trailing: Container(
+                      margin: EdgeInsets.only(right: 0),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey[300], width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      width: 120,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          SizedBox(
+                            width: _buttonWidth,
+                            height: _buttonWidth,
+                            child: FlatButton(
+                              padding: EdgeInsets.all(0),
+                              onPressed: () {
+                                setState(() {
+                                  if (foodNotifier
+                                          .userFoodCart[index].quantity ==
+                                      1) {
+                                    foodNotifier.userFoodCart.removeAt(index);
+                                  } else {
+                                    foodNotifier.userFoodCart[index].quantity--;
+                                  }
+                                });
+                              },
+                              child: Text(
+                                "-",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600, fontSize: 25),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            foodNotifier.userFoodCart[index].quantity
+                                .toString(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 20),
+                          ),
+                          SizedBox(
+                            width: _buttonWidth,
+                            height: _buttonWidth,
+                            child: FlatButton(
+                              padding: EdgeInsets.all(0),
+                              onPressed: () {
+                                setState(() {
+                                  foodNotifier.userFoodCart[index].quantity++;
+                                });
+                              },
+                              child: Text(
+                                "+",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600, fontSize: 20),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              })
+          //new Cart_products()
+          ),
       bottomNavigationBar: new Container(
         color: Colors.white,
         child: Row(
@@ -66,31 +161,30 @@ class _CartPageState extends State<CartPage> {
 
   returnTotalAmount(List<Food> userFoodCart) {
     int totalAmount = 0;
-    int quantity = 1;
     for (int i = 0; i < userFoodCart.length; i++) {
-      var Price = int.parse(userFoodCart[i].price);
-      totalAmount = totalAmount + Price * quantity;
-      // userFoodCart[i].quantity;
+      var price = int.parse(userFoodCart[i].price);
+      totalAmount = totalAmount + price * userFoodCart[i].quantity;
     }
     return totalAmount;
-    //.toStringAsFixed(1);
   }
 
   void _onsaved() async {
     FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
     AuthNotifier authNotifier = Provider.of<AuthNotifier>(context);
+    int i;
     if (_formKey.currentState.validate()) {
       setState(() => uploaded = true);
-      for (int i = 0; i < foodNotifier.userFoodCart.length; i++) {
+      for (i = 0; i < foodNotifier.userFoodCart.length; i++) {
         productService.uploadProduct({
+          "Order Time": Timestamp.now(),
           "User ID": authNotifier.user.uid.toString(),
           "User Name": authNotifier.user.displayName.toString(),
           "name": foodNotifier.userFoodCart[i].name.toString(),
           "image": foodNotifier.userFoodCart[i].image.toString(),
           "price": foodNotifier.userFoodCart[i].price.toString(),
+          "quantity": foodNotifier.userFoodCart[i].quantity.toString(),
         });
         Fluttertoast.showToast(msg: 'Your order is placed.');
-        Navigator.pop(context);
       }
     } else {
       setState(() => uploaded = false);

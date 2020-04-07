@@ -22,11 +22,6 @@ class _ProductsState extends State<Products> {
   Widget build(BuildContext context) {
     FoodNotifier foodNotifier = Provider.of<FoodNotifier>(context);
 
-    Future<void> _refreshList() async {
-      getFoods(foodNotifier);
-    }
-
-   // print("building Products");
     return GridView.builder(
       itemCount: foodNotifier.foodList.length,
       gridDelegate:

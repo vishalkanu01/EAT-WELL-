@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:user_food/secondary_screens/About.dart';
 import 'package:user_food/secondary_screens/CartPage.dart';
 import 'package:user_food/secondary_screens/Products.dart';
-import 'package:user_food/secondary_screens/website.dart';
 
 class Feed extends StatefulWidget {
   @override
@@ -31,7 +30,7 @@ class _FeedState extends State<Feed> {
     }
 
     // print("building Feed");
-    Widget Image_carousel = new Container(
+    Widget image_carousel = new Container(
       height: 120.0,
       child: Carousel(
         boxFit: BoxFit.cover,
@@ -115,7 +114,7 @@ class _FeedState extends State<Feed> {
         child: new Column(
           children: <Widget>[
             //===========image carousel begins here=======
-            Image_carousel,
+            image_carousel,
             new Padding(
               padding: const EdgeInsets.all(0.0),
               // child: Text('Categories'),
